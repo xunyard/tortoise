@@ -1,16 +1,14 @@
 const http = require("http");
-const url = require("url");
 const router = require("./route");
 
+/**
+ * 顶级处理<br>
+ * 特殊：dispatcher返回true时，表明处理已完成；否则其自行完成，异步结束
+ * @param request
+ * @param response
+ */
 function onRequest(request, response) {
-
-    const result = router.dispatcher(request, response);
-
-    if (result === false) {
-        const pathname = url.parse(request.url).pathname;
-
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write("No handle for method: " + pathname);
+    if (router.dispatcher(request, response) === true)  {
         response.end();
     }
 }

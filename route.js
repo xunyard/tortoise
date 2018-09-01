@@ -26,7 +26,10 @@ function register() {
 }
 
 /**
- * 请求分发处理
+ * 请求分发处理<br>
+ * @param request
+ * @param response
+ * @returns {*}
  */
 function dispatcher(request, response) {
     const method = request.method;
@@ -35,16 +38,20 @@ function dispatcher(request, response) {
     
     const handler = route_map.get(key);
 
-    // 未找到处理方法，直接返回
+    // 未找到处理方法，返回
     if (!!handler === false) {
-        return false;
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("No handle for method: [" + method + "] " + path);
+        return true;
     } 
-    
+
     // 返回给节点处理结果
     const result = handler(request, response);
 
     if (result === true) {
-        response.end();
+        console.log("[Dispatch] successfully dispatch handle for request: [" + request.method + "] " + request.url);
+    } else {
+        console.log("[Dispatch] fail to dispatch handle for request: [" + request.method + "] " + request.url);
     }
 
     return result;
