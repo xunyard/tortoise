@@ -27,7 +27,7 @@ function kill_pid(response, pid) {
         if (error === true) {
             return handle_template.json_fail(response, stderr);
         } else {
-            return handle_template.json_ok(response, stdout);
+            return handle_template.json_ok(response, "confirm kill pid: " + pid);
         }
     });
 }
