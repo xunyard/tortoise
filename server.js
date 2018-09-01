@@ -19,8 +19,8 @@ function start() {
     router.register();
 
     // 创建服务
-    http.createServer(onRequest).listen(8888);
-    console.log("Server has started at 8888");
+    http.createServer(onRequest).listen(9999);
+    console.log("Server has started at 9999");
 }
 
 start();
