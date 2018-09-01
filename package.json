@@ -1,0 +1,21 @@
+{
+  "name": "tortoise",
+  "version": "1.0.0",
+  "description": "a nodejs based server for Gitlab-runner accompany with deployment",
+  "main": "server.js",
+  "dependencies": {
+    "node.js": "^0.0.0",
+    "npm": "^6.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.xunyard.cn:xunyard/tortoise.git"
+  },
+  "author": "",
+  "license": "MIT"
+}
