@@ -7,7 +7,7 @@ function kill(request, response) {
 
 
 function register(route_map) {
-    route_map.set("POST:/api/deploy/kill", kill);
+    route_map.set("GET:/api/deploy/kill", kill);
     console.log("successfully register handle: [GET] /api/deploy/kill");
 }
 
