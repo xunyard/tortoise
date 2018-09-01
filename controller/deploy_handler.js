@@ -78,7 +78,6 @@ function run_java(response, jar, log) {
 function register(route_map) {
     route_map.set("POST:/api/deploy/kill", handle_kill);
     route_map.set("POST:/api/deploy/run-java", handle_deploy_java);
-    console.log("successfully register handle: [GET] /api/deploy/kill");
 }
 
 exports.register = register;
