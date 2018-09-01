@@ -1,6 +1,6 @@
 ## tortoise
 
-![logo](logo.png)
+![logo](logo.jpg)
 
 tortoise[ˈtɔrtəs]，中文是乌龟的意思，具备驼扶的寓意。
 
