@@ -73,7 +73,7 @@ function run_java(response, jar, log) {
     console.log("execute command is: " + command);
     process.exec(command, function (error, stdout, stderr) {
         if (error === true) {
-            console.error(stderr);
+            console.log(stderr);
         }
     });
 
