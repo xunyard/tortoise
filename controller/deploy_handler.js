@@ -70,7 +70,13 @@ function run_java(response, jar, log) {
         ? "java -jar " + jar + " > " + log + " &"
         : "java -jar " + jar + " &";
 
-    process.exec(command);
+    console.log("execute command is: " + command);
+    process.exec(command, function (error, stdout, stderr) {
+        if (error === true) {
+            console.error(stderr);
+        }
+    });
+
 
     return handle_template.json_ok(response, "java run task has been pushed!");
 }
