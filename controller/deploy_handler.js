@@ -10,14 +10,14 @@ const process = require('child_process');
  * @param response
  * @returns {boolean}
  */
-function handle_kill(request, response) {
+async function handle_kill(request, response) {
 
     const pid = handle_template.parse_param(request, "pid");
     if (!!pid === false) {
         return handle_template.json_fail(response, "no pid provided in query!");
     }
 
-    kill_pid(response, pid);
+    await kill_pid(response, pid);
 
     return false;
 }
