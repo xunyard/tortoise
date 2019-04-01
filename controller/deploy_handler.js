@@ -43,7 +43,7 @@ function kill_jar(response, jar) {
         if (err === true) {
             return handle_template.json_fail(response, stderr);
         } else {
-            return handle_template.json_ok(response, "confirm kill pid: " + jar);
+            return handle_template.json_ok(response, "confirm kill jar: " + jar);
         }
     });
 }
