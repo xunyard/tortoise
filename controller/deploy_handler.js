@@ -10,14 +10,14 @@ const process = require('child_process');
  * @param response
  * @returns {boolean}
  */
-async function handle_kill(request, response) {
+function handle_kill(request, response) {
 
     const pid = handle_template.parse_param(request, "pid");
     if (!!pid === false) {
         return handle_template.json_fail(response, "no pid provided in query!");
     }
 
-    await kill_pid(response, pid);
+    kill_pid(response, pid);
 
     return false;
 }
@@ -32,6 +32,21 @@ function kill_pid(response, pid) {
     });
 }
 
+function handle_kill_jar(request, response) {
+    const jar = handle_template.parse_param(request, "jar");
+    kill_jar(response, jar);
+    return false;
+}
+
+function kill_jar(response, jar) {
+    process.exec("kill -9 `ps x | grep " + jar + " | grep -v grep | awk '{print $1}'`", function (err, stdout, stderr) {
+        if (err === true) {
+            return handle_template.json_fail(response, stderr);
+        } else {
+            return handle_template.json_ok(response, "confirm kill pid: " + jar);
+        }
+    });
+}
 /**
  * 部署java实例<br>
  * 用法：/api/deploy/run-java?jar=<package>&log=<log>
@@ -83,6 +98,7 @@ function run_java(response, jar, log) {
 
 function register(route_map) {
     route_map.set("POST:/api/deploy/kill", handle_kill);
+    route_map.set("POST:/api/deploy/kill/jar", handle_kill_jar);
     route_map.set("POST:/api/deploy/run-java", handle_deploy_java);
 }
 
