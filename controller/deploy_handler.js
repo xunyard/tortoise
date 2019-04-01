@@ -23,7 +23,7 @@ function handle_kill(request, response) {
 }
 
 function kill_pid(response, pid) {
-    process.exec("kill " + pid, function (error, stdout, stderr) {
+    process.exec("kill -9 " + pid, function (error, stdout, stderr) {
         if (error === true) {
             return handle_template.json_fail(response, stderr);
         } else {
@@ -39,7 +39,7 @@ function handle_kill_jar(request, response) {
 }
 
 function kill_jar(response, jar) {
-    process.exec("kill `ps x | grep " + jar + " | grep -v grep | awk '{print $1}'`", function (err, stdout, stderr) {
+    process.exec("kill -9 `ps x | grep " + jar + " | grep -v grep | awk '{print $1}'`", function (err, stdout, stderr) {
         if (err === true) {
             return handle_template.json_fail(response, stderr);
         } else {
